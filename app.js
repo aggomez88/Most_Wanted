@@ -9,8 +9,8 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(displayOption);
-      
+      searchByName(data);
+    
       break;
     case 'no':
       // TODO: search by traits
@@ -37,9 +37,12 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
       // TODO: get person's info
+      alert(personInfo);
       break;
     case "family":
       // TODO: get person's family
+      var familyInfo = "currentSpousee" + " " + "parents";
+      alert(familyInfo)
       break;
     case "descendants":
       // TODO: get person's descendants
@@ -65,7 +68,11 @@ function searchByName(people){
   });
 
   // TODO: What to do with filteredPeople?
-
+  people.filter(function(el){
+    if(el === filteredPeople){
+      return filteredPeople;
+    }
+  })
 }
 
 // alerts a list of people
