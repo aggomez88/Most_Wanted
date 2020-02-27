@@ -9,11 +9,7 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(data);
-<<<<<<< HEAD
-    
-=======
->>>>>>> 69599bc2c681078ffc2e0d6841d180dfee1f3166
+      searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
@@ -37,11 +33,13 @@ function mainMenu(person, people){
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  var currentPerson = displayPerson;
   switch(displayOption){
     case "info":
       // TODO: get person's info
-      alert(personInfo);
+      if(currentPerson == person.firstName){
+        return displayPerson(person);
+      }
       break;
     case "family":
       // TODO: get person's family
@@ -66,27 +64,22 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
 
   let filteredPeople = people.filter(function(el) {
-    if(el.firstName === firstName && el.lastName === lastName || el.firstName === firstName && el.lastName === lastName) {
-      
+    if(el.firstName === firstName && el.lastName === lastName) {
+      return el;
     }
-    return mainMenu(el);
+   
   });
-  
-  // TODO: What to do with filteredPeople?
-  people.filter(function(el){
-<<<<<<< HEAD
-    if(el === filteredPeople){
-      return filteredPeople;
-    }
-  })
-=======
-    if(el === filteredPeople.firstName || el === filteredPeople.lastName){
-      
-    return mainMenu(el);
-    }
-  });
->>>>>>> 69599bc2c681078ffc2e0d6841d180dfee1f3166
+  return filteredPeople[0];
 }
+  // TODO: What to do with filteredPeople?
+  // people.filter(function(el){
+
+  //   if(el === filteredPeople.firstName || el === filteredPeople.lastName){
+      
+  //   return mainMenu(el);
+  //   }
+  // });
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -98,8 +91,17 @@ function displayPeople(people){
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
+ var  personInfo = "Id: " + person.id + "\n";
+  personInfo += "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.Weight + "\n";
+  personInfo += "Eye color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "current Spouse: " + person.currentSpouse + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
