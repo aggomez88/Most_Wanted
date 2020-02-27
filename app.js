@@ -9,13 +9,11 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-
-      searchByName(displayOption);
-      
-
+      searchByName(data);
       break;
     case 'no':
       // TODO: search by traits
+      searchByTraits(data);
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -61,13 +59,19 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
 
   let filteredPeople = people.filter(function(el) {
-    if(el.firstName === firstName && el.lastName === lastName) {
-      return el;
+    if(el.firstName === firstName && el.lastName === lastName || el.firstName === firstName && el.lastName === lastName) {
+      
+    }
+    return mainMenu(el);
+  });
+  
+  // TODO: What to do with filteredPeople?
+  people.filter(function(el){
+    if(el === filteredPeople.firstName || el === filteredPeople.lastName){
+      
+    return mainMenu(el);
     }
   });
-
-  // TODO: What to do with filteredPeople?
-
 }
 
 // alerts a list of people
@@ -102,4 +106,16 @@ function yesNo(input){
 // helper function to pass in as default promptFor validation
 function chars(input){
   return true; // default validation only
+}
+
+function searchByTraits(people){
+  var id = promptFor("Enter the person's ID number", chars)
+  var gender = promptFor("Enter the person's gender", chars);
+  var dob = promptFor("Enter the persons Date of Birth", chars);
+
+  let filteredTraits = people.filter(function(el) {
+    if(el.id === id && el.gender === gender && el.dob == dob ) {
+      return el;
+    }
+  });
 }
