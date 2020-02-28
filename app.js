@@ -11,10 +11,12 @@ function app(people){
       // TODO: search by name
       searchByName(data);
       break;
+
     case 'no':
       // TODO: search by traits
       searchByTraits(data);
       break;
+
     default:
       alert("Invalid input. Please try again!");
       app(people); // restart app
@@ -41,15 +43,19 @@ function mainMenu(person, people){
         return displayPerson(person);
       }
       break;
+
     case "family":
       // TODO: get person's family
+
       var familyInfo = "currentSpouse" + " " + "parents";
       
       if(person.parents === data){
         return displayPerson(person.parents, person.currentSpouse)
       }
       //alert(familyInfo)
+
       break;
+
     case "descendants":
       var descendantList = [];
       function displayKids(){
@@ -61,9 +67,11 @@ function mainMenu(person, people){
       }
       // TODO: get person's descendants
       break;
+
     case "restart":
       app(people); // restart
       break;
+
     case "quit":
       return; // stop execution
     default:
@@ -82,19 +90,18 @@ function searchByName(people){
     }
    
   });
-  
-
+  return filteredPeople(el)
+}
   // TODO: What to do with filteredPeople?
   people.filter(function(el){
 
     if(el === filteredPeople.firstName || el === filteredPeople.lastName){
-      
     return mainMenu(el);
     }
   });
 
-}
 // alerts a list of people
+
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
@@ -117,6 +124,7 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "current Spouse: " + person.currentSpouse + "\n";
+
   // TODO: finish getting the rest of the information to display
   ////////////////DONE////////////////////////
   alert(personInfo);
@@ -139,6 +147,7 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+<<<<<<< HEAD
 /////////////////////////////Done Done Done//////////////////////////////////////////////
 function searchByTraits(people){
   
@@ -224,8 +233,20 @@ function searchByTraits(people){
   }
   ///////////////////////////// Done//////////////////////////////////////////////
   let filteredTraits = people.filter(function(el) {
-    if(el.id === id && el.gender === gender && el.dob == dob ) {
-      return el;
-    }
+    if()
+      return filteredTraits; 
   });
+}
+
+function findFamily(person, people){
+  
+  let displayParents = data.filter(function(el){
+    if(el.parents[0] === person.parents[0]){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return displayParents;
 }
