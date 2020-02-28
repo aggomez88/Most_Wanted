@@ -9,12 +9,14 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(people);
+      searchByName(data);
       break;
+
     case 'no':
       // TODO: search by traits
-      searchByTraits(people);
+      searchByTraits(data);
       break;
+
     default:
       alert("Invalid input. Please try again!");
       app(people); // restart app
@@ -33,23 +35,30 @@ function mainMenu(person, people){
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  var currentPerson = person;
   switch(displayOption){
     case "info":
       // TODO: get person's info
-      alert(personInfo);
+      if(currentPerson == person){
+        return displayPerson(person);
+      }
       break;
+
     case "family":
       // TODO: get person's family
+      findFamily(person);
       var familyInfo = "currentSpousee" + " " + "parents";
       alert(familyInfo)
       break;
+
     case "descendants":
       // TODO: get person's descendants
       break;
+
     case "restart":
       app(people); // restart
       break;
+
     case "quit":
       return; // stop execution
     default:
@@ -62,28 +71,24 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
 
   let filteredPeople = people.filter(function(el) {
-    if(el.firstName === people.firstName && el.lastName === people.lastName ) {
-      
+    if(el.firstName === firstName && el.lastName === lastName) {
+      return mainMenu(el);
+     
     }
-    return el;
-    
+   
   });
   return filteredPeople(el)
 }
-  
   // TODO: What to do with filteredPeople?
   people.filter(function(el){
 
     if(el === filteredPeople.firstName || el === filteredPeople.lastName){
-      
-      return mainMenu(el);
-      }
-    });
-  
-
-
+    return mainMenu(el);
+    }
+  });
 
 // alerts a list of people
+
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
@@ -91,12 +96,24 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
+  ////////////////DONE DONE DONE////////////////////////
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
+
+ var  personInfo = "Id: " + person.id + "\n";
+  personInfo += "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  personInfo += "Weight" + person
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.Weight + "\n";
+  personInfo += "Eye color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "current Spouse: " + person.currentSpouse + "\n";
+
   // TODO: finish getting the rest of the information to display
+  ////////////////DONE DONE DONE////////////////////////
   alert(personInfo);
 }
 
@@ -118,14 +135,26 @@ function chars(input){
   return true; // default validation only
 }
 
-function searchByTraits(people){
+function searchByTraits(people, person){
   var id = promptFor("Enter the person's ID number", chars)
   var gender = promptFor("Enter the person's gender", chars);
   var dob = promptFor("Enter the persons Date of Birth", chars);
 
   let filteredTraits = people.filter(function(el) {
-    if(el.id === id && el.gender === gender && el.dob == dob ) {
-      return el;
-    }
+    if()
+      return filteredTraits; 
   });
+}
+
+function findFamily(person, people){
+  
+  let displayParents = data.filter(function(el){
+    if(el.parents[0] === person.parents[0]){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return displayParents;
 }
