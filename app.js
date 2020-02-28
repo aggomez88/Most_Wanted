@@ -9,7 +9,7 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(people);
+      searchByName(data);
       break;
     case 'no':
       // TODO: search by traits
@@ -33,11 +33,11 @@ function mainMenu(person, people){
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-  var currentPerson = displayPerson;
+  var currentPerson = person;
   switch(displayOption){
     case "info":
       // TODO: get person's info
-      if(currentPerson == person.firstName){
+      if(currentPerson == person){
         return displayPerson(person);
       }
       break;
@@ -65,22 +65,23 @@ function searchByName(people){
 
   let filteredPeople = people.filter(function(el) {
     if(el.firstName === firstName && el.lastName === lastName) {
-      return el;
+      return mainMenu(el);
+     
     }
    
   });
-  return filteredPeople[0];
-}
+  
+
   // TODO: What to do with filteredPeople?
-  // people.filter(function(el){
+  people.filter(function(el){
 
-  //   if(el === filteredPeople.firstName || el === filteredPeople.lastName){
+    if(el === filteredPeople.firstName || el === filteredPeople.lastName){
       
-  //   return mainMenu(el);
-  //   }
-  // });
+    return mainMenu(el);
+    }
+  });
 
-
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -89,8 +90,10 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
+  ////////////////DONE DONE DONE////////////////////////
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
+
  var  personInfo = "Id: " + person.id + "\n";
   personInfo += "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
@@ -103,6 +106,7 @@ function displayPerson(person){
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "current Spouse: " + person.currentSpouse + "\n";
   // TODO: finish getting the rest of the information to display
+  ////////////////DONE DONE DONE////////////////////////
   alert(personInfo);
 }
 
