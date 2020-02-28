@@ -43,10 +43,22 @@ function mainMenu(person, people){
       break;
     case "family":
       // TODO: get person's family
-      var familyInfo = "currentSpousee" + " " + "parents";
-      alert(familyInfo)
+      var familyInfo = "currentSpouse" + " " + "parents";
+      
+      if(person.parents === data){
+        return displayPerson(person.parents, person.currentSpouse)
+      }
+      //alert(familyInfo)
       break;
     case "descendants":
+      var descendantList = [];
+      function displayKids(){
+        alert(descendantList);
+        if(currentPerson.id === data){
+        return displayKids(descendantList.push(data.person))
+        }
+       // else if(data.parents ==)
+      }
       // TODO: get person's descendants
       break;
     case "restart":
@@ -106,7 +118,7 @@ function displayPerson(person){
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "current Spouse: " + person.currentSpouse + "\n";
   // TODO: finish getting the rest of the information to display
-  ////////////////DONE DONE DONE////////////////////////
+  ////////////////DONE////////////////////////
   alert(personInfo);
 }
 
@@ -127,12 +139,90 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-
+/////////////////////////////Done Done Done//////////////////////////////////////////////
 function searchByTraits(people){
-  var id = promptFor("Enter the person's ID number", chars)
-  var gender = promptFor("Enter the person's gender", chars);
-  var dob = promptFor("Enter the persons Date of Birth", chars);
+  
 
+  var traits = prompt(" Do you want to know their 'last name', 'gender','dob','eye color', or 'height'? Type the option you want or 'restart' or 'quit'");
+  
+  switch(traits){
+    case "last name":
+      var lName = prompt("What is their last name?")
+      var peopleLast = people.filter(function(el){
+        if(lName ===el.lastName){
+          return true;
+
+        }
+        else{
+          return false;
+        }
+      });
+      displayPeople(peopleLast);
+        break;
+      
+      
+    case "gender":
+      var personGender = prompt("What is their gender? male or female")
+      var peopleGender = people.filter(function(el){
+        if(personGender ===el.gender){
+          return true;
+        }
+        else{
+          return false;
+        }
+      });
+      displayPeople(peopleGender);
+        break;
+    case "dob":
+      var personDOB = prompt("What is their DOB? Ex. MM/DD/YYYY")
+      var peopleDOB = people.filter(function(el){
+        if(personDOB ===el.dob){
+          return true;
+
+        }
+        else{
+          return false;
+        }
+      });
+      displayPeople(peopleDOB);
+        break;
+      
+      
+      case "eye color":
+        var personEye = prompt("What is their eye color? black, brown, hazel, blue or green")
+        var peopleEyes = people.filter(function(el){
+          if(personEye ===el.eyeColor){
+            return true;
+  
+          }
+          else{
+            return false;
+          }
+        });
+        displayPeople(peopleEyes);
+          break;
+      case "height":
+        var personHeight = prompt("What is their height in inches?" )
+        var peopleHeight = people.filter(function(el){
+          if(personHeight == el.height){
+            return true;
+          }
+          else{
+            return false;
+          }
+        });
+        displayPeople(peopleHeight);
+          break;
+  
+    case "restart":
+      app(people); // restart
+      break;
+    case "quit":
+      return; // stop execution
+    default:
+      return mainMenu(person, people); // ask again
+  }
+  ///////////////////////////// Done//////////////////////////////////////////////
   let filteredTraits = people.filter(function(el) {
     if(el.id === id && el.gender === gender && el.dob == dob ) {
       return el;
