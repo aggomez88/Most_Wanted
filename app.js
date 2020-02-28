@@ -9,15 +9,11 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(data);
-<<<<<<< HEAD
-    
-=======
->>>>>>> 69599bc2c681078ffc2e0d6841d180dfee1f3166
+      searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
-      searchByTraits(data);
+      searchByTraits(people);
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -66,27 +62,26 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
 
   let filteredPeople = people.filter(function(el) {
-    if(el.firstName === firstName && el.lastName === lastName || el.firstName === firstName && el.lastName === lastName) {
+    if(el.firstName === people.firstName && el.lastName === people.lastName ) {
       
     }
-    return mainMenu(el);
+    return el;
+    
   });
+  return filteredPeople(el)
+}
   
   // TODO: What to do with filteredPeople?
   people.filter(function(el){
-<<<<<<< HEAD
-    if(el === filteredPeople){
-      return filteredPeople;
-    }
-  })
-=======
+
     if(el === filteredPeople.firstName || el === filteredPeople.lastName){
       
-    return mainMenu(el);
-    }
-  });
->>>>>>> 69599bc2c681078ffc2e0d6841d180dfee1f3166
-}
+      return mainMenu(el);
+      }
+    });
+  
+
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -100,6 +95,7 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Weight" + person
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
