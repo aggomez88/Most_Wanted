@@ -9,12 +9,12 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(data);
+      searchByName(people);
       break;
 
     case 'no':
       // TODO: search by traits
-      searchByTraits(data);
+      searchBySingleCriterion(people);
       break;
 
     default:
@@ -47,12 +47,9 @@ function mainMenu(person, people){
     case "family":
       // TODO: get person's family
 
-      var familyInfo = "currentSpouse" + " " + "parents";
-      
-      if(person.parents === data){
-        return displayPerson(person.parents, person.currentSpouse)
-      }
-      //alert(familyInfo)
+      findFamily(person, people);
+      var familyInfo = "currentSpousee" + " " + "parents";
+      alert(displayPeople)
 
       break;
 
@@ -238,15 +235,40 @@ function searchByTraits(people){
   });
 }
 
+
 function findFamily(person, people){
   
   let displayParents = data.filter(function(el){
-    if(el.parents[0] === person.parents[0]){
+    if(el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1] || el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1] || el.parents[1] === person.parents[0] || el.currentSpouse === person.currentSpouse) {
       return true;
     }
     else{
       return false;
     }
   })
-  return displayParents;
+  return displayPeople(displayParents);
 }
+
+
+
+// function searchByTraits(people, person){
+  
+//   var gender = promptFor("Enter the person's gender", chars);
+//   var dob = promptFor("Enter the persons Date of Birth", chars);
+
+//   let filteredTraits = people.filter(function(el) {
+//     if(el.gender === gender){
+//       return true;
+//     }
+//     else {
+//       return false;
+//     }
+//   })
+//   return filteredTraits;;
+// }
+
+
+
+
+
+
