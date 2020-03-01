@@ -147,7 +147,7 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-<<<<<<< HEAD
+
 /////////////////////////////Done Done Done//////////////////////////////////////////////
 function searchByTraits(people){
   
