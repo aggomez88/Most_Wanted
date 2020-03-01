@@ -9,12 +9,12 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      searchByName(data);
+      searchByName(people);
       break;
 
     case 'no':
       // TODO: search by traits
-      searchByTraits(data);
+      searchBySingleCriterion(people);
       break;
 
     default:
@@ -46,9 +46,9 @@ function mainMenu(person, people){
 
     case "family":
       // TODO: get person's family
-      findFamily(person);
+      findFamily(person, people);
       var familyInfo = "currentSpousee" + " " + "parents";
-      alert(familyInfo)
+      alert(displayPeople)
       break;
 
     case "descendants":
@@ -135,26 +135,41 @@ function chars(input){
   return true; // default validation only
 }
 
-function searchByTraits(people, person){
-  var id = promptFor("Enter the person's ID number", chars)
-  var gender = promptFor("Enter the person's gender", chars);
-  var dob = promptFor("Enter the persons Date of Birth", chars);
 
-  let filteredTraits = people.filter(function(el) {
-    if()
-      return filteredTraits; 
-  });
-}
 
 function findFamily(person, people){
   
   let displayParents = data.filter(function(el){
-    if(el.parents[0] === person.parents[0]){
+    if(el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1] || el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1] || el.parents[1] === person.parents[0] || el.currentSpouse === person.currentSpouse) {
       return true;
     }
     else{
       return false;
     }
   })
-  return displayParents;
+  return displayPeople(displayParents);
 }
+
+
+
+// function searchByTraits(people, person){
+  
+//   var gender = promptFor("Enter the person's gender", chars);
+//   var dob = promptFor("Enter the persons Date of Birth", chars);
+
+//   let filteredTraits = people.filter(function(el) {
+//     if(el.gender === gender){
+//       return true;
+//     }
+//     else {
+//       return false;
+//     }
+//   })
+//   return filteredTraits;;
+// }
+
+
+
+
+
+
