@@ -85,17 +85,15 @@ function searchByName(people){
       return mainMenu(el);
      
     }
-   
   });
   return filteredPeople(el)
 }
   // TODO: What to do with filteredPeople?
-  people.filter(function(el){
-
-    if(el === filteredPeople.firstName || el === filteredPeople.lastName){
-    return mainMenu(el);
-    }
-  });
+  // data.filter(function(el){
+  //   if(el === filteredPeople.firstName || el === filteredPeople.lastName){
+  //   return mainMenu(el);
+  //   }
+  // });
 
 // alerts a list of people
 
@@ -166,7 +164,6 @@ function searchByTraits(people){
       displayPeople(peopleLast);
         break;
       
-      
     case "gender":
       var personGender = prompt("What is their gender? male or female")
       var peopleGender = people.filter(function(el){
@@ -179,6 +176,7 @@ function searchByTraits(people){
       });
       displayPeople(peopleGender);
         break;
+
     case "dob":
       var personDOB = prompt("What is their DOB? Ex. MM/DD/YYYY")
       var peopleDOB = people.filter(function(el){
@@ -193,7 +191,7 @@ function searchByTraits(people){
       displayPeople(peopleDOB);
         break;
       
-      
+
       case "eye color":
         var personEye = prompt("What is their eye color? black, brown, hazel, blue or green")
         var peopleEyes = people.filter(function(el){
@@ -229,17 +227,17 @@ function searchByTraits(people){
       return mainMenu(person, people); // ask again
   }
   ///////////////////////////// Done//////////////////////////////////////////////
-  let filteredTraits = people.filter(function(el) {
-    if()
-      return filteredTraits; 
-  });
+  
 }
 
 
 function findFamily(person, people){
   
   let displayParents = data.filter(function(el){
-    if(el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1] || el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1] || el.parents[1] === person.parents[0] || el.currentSpouse === person.currentSpouse) {
+    if(el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1] || el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1] || el.parents[1] === person.parents[0]) {
+      return true;
+    }
+    else if(el.id == person.parents[0] || el.id == person.parents[1]){
       return true;
     }
     else{
