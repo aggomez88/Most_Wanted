@@ -38,18 +38,14 @@ function mainMenu(person, people){
   var currentPerson = person;
   switch(displayOption){
     case "info":
-      // TODO: get person's info
       if(currentPerson == person){
         return displayPerson(person);
       }
       break;
 
     case "family":
-      // TODO: get person's family
 
       findFamily(person, people);
-      var familyInfo = "currentSpousee" + " " + "parents";
-      alert(displayPeople)
 
       break;
 
@@ -86,14 +82,16 @@ function searchByName(people){
      
     }
   });
-  return filteredPeople(el)
+  return filteredPeople;
 }
-  // TODO: What to do with filteredPeople?
-  // data.filter(function(el){
-  //   if(el === filteredPeople.firstName || el === filteredPeople.lastName){
-  //   return mainMenu(el);
-  //   }
-  // });
+
+  data.filter(function(el){
+
+    if(el === data.firstName || el === data.lastName){
+    return mainMenu(el);
+    }
+  });
+
 
 // alerts a list of people
 
@@ -105,8 +103,6 @@ function displayPeople(people){
 
 function displayPerson(person){
   ////////////////DONE DONE DONE////////////////////////
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
 
  var  personInfo = "Id: " + person.id + "\n";
   personInfo += "First Name: " + person.firstName + "\n";
@@ -120,7 +116,6 @@ function displayPerson(person){
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "current Spouse: " + person.currentSpouse + "\n";
 
-  // TODO: finish getting the rest of the information to display
   ////////////////DONE////////////////////////
   alert(personInfo);
 }
@@ -227,43 +222,28 @@ function searchByTraits(people){
       return mainMenu(person, people); // ask again
   }
   ///////////////////////////// Done//////////////////////////////////////////////
-  
-}
 
+}
 
 function findFamily(person, people){
   
   let displayParents = data.filter(function(el){
     if(el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1] || el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1] || el.parents[1] === person.parents[0]) {
+
       return true;
     }
-    else if(el.id == person.parents[0] || el.id == person.parents[1]){
+      else if(el.id == person.parents[0] || el.id == person.parents[1]){
+        return true;
+     }
+     else if (el.id == person.currentSpouse){
       return true;
-    }
+      }
     else{
       return false;
     }
   })
   return displayPeople(displayParents);
 }
-
-
-
-// function searchByTraits(people, person){
-  
-//   var gender = promptFor("Enter the person's gender", chars);
-//   var dob = promptFor("Enter the persons Date of Birth", chars);
-
-//   let filteredTraits = people.filter(function(el) {
-//     if(el.gender === gender){
-//       return true;
-//     }
-//     else {
-//       return false;
-//     }
-//   })
-//   return filteredTraits;;
-// }
 
 
 
